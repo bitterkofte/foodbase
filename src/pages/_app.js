@@ -1,3 +1,4 @@
+import Layout from '@component/components/Layout'
 import { StateProvider } from '@component/context/StateProvider'
 import { initialState } from '@component/context/initialState'
 import reducer from '@component/context/reducer'
@@ -14,7 +15,11 @@ export default function App({ Component, pageProps }) {
   return (
     <main className={poppins.className}>
       <StateProvider initialState={initialState} reducer={reducer}>
-        <Component {...pageProps} />
+        
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+
       </StateProvider>
     </main>
   )
