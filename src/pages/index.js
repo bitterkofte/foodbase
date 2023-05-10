@@ -9,7 +9,7 @@ import MainContainer from '@component/components/MainContainer'
 export default function Home() {
   return (
     <AnimatePresence mode='wait'>
-      <div className='w-screen h-auto flex flex-col bg-primary'>
+      <div className='w-full h-auto flex flex-col bg-primary'>
         <MainContainer/>
       </div>
     </AnimatePresence>

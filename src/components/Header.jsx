@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   return (
-    <header className='fixed top-0 z-50 w-screen bg-slate-300 p-3 px-4 md:p-6 md:px-16 shadow-sm'>
+    <header className='fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg'>
 
       {/* desktop */}
       <div className='hidden md:flex w-full items-center justify-between'>
@@ -128,8 +128,10 @@ const Header = () => {
                 exit={{opacity: 0, scale: 0.2}} 
                 className='w-40 bg-primary shadow-md rounded-lg flex  flex-col absolute top-12 right-0 overflow-hidden'>
                 {user && user.email === "bitterkofte@gmail.com" && (
-                  <Link href={"/"}>
-                    <p className='m-2 p-2 bg-blue-400 rounded-md shadow-md flex items-center justify-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'><MdAdd/>New Item</p>
+                  <Link href="/newitem">
+                    <p className='m-2 p-2 bg-blue-400 rounded-md shadow-md flex items-center justify-center gap-3 hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>
+                      <MdAdd/>New Item
+                    </p>
                   </Link>
                 )}
                 <ul className='flex items-center flex-col'>
