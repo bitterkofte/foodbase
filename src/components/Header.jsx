@@ -88,8 +88,10 @@ const Header = () => {
                 exit={{opacity: 0, scale: 0.2}} 
                 className='w-40 bg-primary shadow-xl rounded-lg flex flex-col absolute top-12 right-0 overflow-hidden'>
                 {user && user.email === "bitterkofte@gmail.com" && (
-                  <Link href={"/"}>
-                    <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'><MdAdd/>New Item</p>
+                  <Link href="/newitem" onClick={() => setIsMenu(false)}>
+                    <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>
+                      <MdAdd/>New Item
+                    </p>
                   </Link>
                 )}
                 <p className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'
@@ -128,7 +130,7 @@ const Header = () => {
                 exit={{opacity: 0, scale: 0.2}} 
                 className='w-40 bg-primary shadow-md rounded-lg flex  flex-col absolute top-12 right-0 overflow-hidden'>
                 {user && user.email === "bitterkofte@gmail.com" && (
-                  <Link href="/newitem">
+                  <Link href="/newitem" onClick={() => setIsMenu(false)}>
                     <p className='m-2 p-2 bg-blue-400 rounded-md shadow-md flex items-center justify-center gap-3 hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base'>
                       <MdAdd/>New Item
                     </p>

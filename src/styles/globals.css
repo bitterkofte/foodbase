@@ -36,6 +36,7 @@ body {
 body {
   /* font-family: 'Comfortaa'; */
   background-color: #f5f3f3;
+  scroll-behavior: smooth !important;
 }
 
 html, body {
