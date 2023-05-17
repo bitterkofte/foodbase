@@ -21,14 +21,14 @@ const HomeContainer = () => {
               src={Delivery}
               className="w-full h-full object-contain pt-[2px]"
               alt="delivery"
-              width={300} height={300}
+              width={100} height={100}
             />
           </div>
         </div>
 
         <p className="text-[2.5rem] lg:text-[4.5rem] font-bold tracking-wide text-headingColor">
           The Fastest Delivery in
-          <span className="text-orange-600 text-[3rem] lg:text-[5rem]">
+          <span className="text-orange-600 text-[3rem] lg:text-[5rem] ml-3 lg:ml-9">
             Your City
           </span>
         </p>
