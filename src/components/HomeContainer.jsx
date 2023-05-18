@@ -21,7 +21,9 @@ const HomeContainer = () => {
               src={Delivery}
               className="w-full h-full object-contain pt-[2px]"
               alt="delivery"
-              width={100} height={100}
+              width={100}
+              height={100}
+              id="rsm"
             />
           </div>
         </div>
@@ -54,7 +56,9 @@ const HomeContainer = () => {
           src={HeroBg}
           className=" ml-auto h-auto w-full lg:w-auto lg:h-650"
           alt="hero-bg"
-          width={300} height={300}
+          width={300}
+          height={300}
+          id="rsm"
         />
 
         {/* Showcase */}
@@ -69,7 +73,9 @@ const HomeContainer = () => {
                   src={n.imageSrc}
                   className="w-20 lg:w-40 -mt-10 lg:-mt-20"
                   alt={n.name}
-                  width={300} height={300}
+                  width={300}
+                  height={300}
+                  id="rsm"
                 />
                 <p className="text-base lg:text-xl font-semibold text-textColor mt-2 lg:mt-4">
                   {n.name}

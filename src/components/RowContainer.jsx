@@ -3,7 +3,7 @@ import { useStateValue } from "@component/context/StateProvider";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MdShoppingBasket } from "react-icons/md";
-import NotFound from '../img/NotFound.svg'
+import Plate from "../img/plate.png";
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
@@ -30,6 +30,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
   return (
     <div
+      id="no-scbar"
       ref={rowContainer}
       className={`w-full flex items-center gap-3 my-12 scroll-smooth  ${
         flag
@@ -54,6 +55,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                   className="w-full h-full object-contain"
                   width={100}
                   height={100}
+                  id="rsm"
                 />
               </motion.div>
               <motion.div
@@ -82,9 +84,16 @@ const RowContainer = ({ flag, data, scrollValue }) => {
         ))
       ) : (
         <div className="w-full flex flex-col items-center justify-center">
-          <img src={NotFound} className="h-340" />
-          <p className="text-xl text-headingColor font-semibold my-2">
-            Items Not Available
+          <Image
+            src={Plate}
+            className="h-150 object-contain grayscale"
+            width={300}
+            height={300}
+            alt="not-found"
+            id="rsm"
+          />
+          <p className="text-xl text-gray-500 font-semibold my-5 grayscale">
+            We’re fresh out of this category 😔
           </p>
         </div>
       )}

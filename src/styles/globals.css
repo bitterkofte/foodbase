@@ -42,3 +42,12 @@ body {
 html, body {
   scroll-behavior: smooth;
 }
+
+#no-scbar::-webkit-scrollbar{
+  display: none;
+}
+
+Image, #rsm {
+  user-select: none;
+  -webkit-user-drag: none;
+}
