@@ -4,20 +4,37 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MdShoppingBasket } from "react-icons/md";
 import Plate from "../img/plate.png";
+import { actionType } from "@component/context/reducer";
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
-
   const [items, setItems] = useState([]);
-
   const [{ cartItems }, dispatch] = useStateValue();
 
+  
+  const increase = (item) => {
+    function inquery(i){
+      return i.title == item.title;
+    }
+    const found = cartItems.find(inquery);
+    // console.log('BULDUM : ',found)
+    if (found) {
+      console.log('ZATEN VAR');
+      // console.log('O DA BU: ', item.qty)
+      item.qty += 1;
+      // console.log('SAYISI: ', cartItems)
+    } else {
+      setItems([...cartItems, item])
+      console.log('SEPET : ', cartItems);
+    }
+  }
+
   const addtocart = () => {
-    // dispatch({
-    //   type: actionType.SET_CARTITEMS,
-    //   cartItems: items,
-    // });
-    // localStorage.setItem("cartItems", JSON.stringify(items));
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+    localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
   useEffect(() => {
@@ -53,15 +70,15 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                   src={item?.imageURL}
                   alt="image"
                   className="w-full h-full object-contain"
-                  width={100}
-                  height={100}
+                  width={700}
+                  height={700}
                   id="rsm"
                 />
               </motion.div>
               <motion.div
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
-                onClick={() => setItems([...cartItems, item])}
+                onClick={() => increase(item)}
               >
                 <MdShoppingBasket className="text-white" />
               </motion.div>

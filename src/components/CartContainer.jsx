@@ -7,6 +7,7 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
 import CartItem from "./CartItem";
+import Image from "next/image";
 
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
@@ -20,17 +21,17 @@ const CartContainer = () => {
     });
   };
 
-  // useEffect(() => {
-  //   let totalPrice = cartItems.reduce(function (accumulator, item) {
-  //     return accumulator + item.qty * item.price;
-  //   }, 0);
-  //   setTot(totalPrice);
-  //   console.log(tot);
-  // }, [tot, flag]);
+  useEffect(() => {
+    let totalPrice = cartItems.reduce(function (accumulator, item) {
+      return accumulator + item.qty * item.price;
+    }, 0);
+    setTot(totalPrice);
+    // console.log(tot);
+  }, [tot, flag]);
 
   const clearCart = () => {
     dispatch({
-      type: actionType.SET_CARTITEMS,
+      type: actionType.SET_CART_ITEMS,
       cartItems: [],
     });
 
@@ -103,7 +104,7 @@ const CartContainer = () => {
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
               >
-                Check Out
+                Order
               </motion.button>
             ) : (
               <motion.button
@@ -111,14 +112,14 @@ const CartContainer = () => {
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
               >
-                Login to check out
+                Login to order
               </motion.button>
             )}
           </div>
         </div>
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center gap-6">
-          <img src={EmptyCart} className="w-300" alt="" />
+          <Image src={EmptyCart} className="w-300" alt="" width={100} height={100}/>
           <p className="text-xl text-textColor font-semibold">
             Add some items to your cart
           </p>
