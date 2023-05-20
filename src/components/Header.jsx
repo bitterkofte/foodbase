@@ -15,6 +15,7 @@ import { app } from "../firebase.config";
 
 import Logo from "../img/logo.png";
 import Avatar from "../img/avatar.png";
+import FB from "../img/FoodBase2.png";
 import { useStateValue } from "@component/context/StateProvider";
 import { actionType } from "@component/context/reducer";
 
@@ -64,7 +65,14 @@ const Header = () => {
       {/* desktop */}
       <div className="hidden md:flex w-full items-center justify-between">
         <Link href={"/"} className="flex items-center gap-2">
-          <Image src={Logo} alt="logo" className="w-8 object-cover" id="rsm" />
+          <Image
+            src={FB}
+            width={200}
+            height={200}
+            alt="logo"
+            className="w-16 object-cover drop-shadow-md"
+            id="rsm"
+          />
           <p className="text-headingColor text-xl font-[700]">FoodBase</p>
         </Link>
 
@@ -76,13 +84,19 @@ const Header = () => {
             className="flex items-center gap-8 font-[500]"
           >
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Home
+              <Link href={"/"} className="">
+                Home
+              </Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Menu
+              <Link href={"/#groceries"} className="">
+                Groceries
+              </Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              About Us
+              <Link href={"/#menu"} className="">
+                Menu
+              </Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               {user ? "DOLU" : "BOŞ"}
@@ -97,7 +111,9 @@ const Header = () => {
             <MdShoppingBasket size={25} className="text-textColor" />
             {cartItems && cartItems.length > 0 && (
               <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg border-2 border-slate-300 flex items-center justify-center">
-                <p className="text-xs text-white font-semibold select-none">{cartItems.length}</p>
+                <p className="text-xs text-white font-semibold select-none">
+                  {cartItems.length}
+                </p>
               </div>
             )}
           </motion.div>
@@ -149,7 +165,7 @@ const Header = () => {
       {/* mobile */}
       <div className="flex items-center justify-between md:hidden w-full">
         <Link href={"/"} className="flex items-center gap-2">
-          <Image src={Logo} alt="logo" className="w-8 object-cover" id="rsm"/>
+          <Image src={FB} alt="logo" className="w-8 object-cover" id="rsm" />
           <p className="text-headingColor text-xl font-[700]">FoodBase</p>
         </Link>
 
@@ -158,7 +174,9 @@ const Header = () => {
             <MdShoppingBasket size={25} className="text-textColor" />
             {cartItems && cartItems.length > 0 && (
               <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg border-2 border-slate-300 flex items-center justify-center">
-                <p className="text-xs text-white font-semibold select-none">{cartItems.length}</p>
+                <p className="text-xs text-white font-semibold select-none">
+                  {cartItems.length}
+                </p>
               </div>
             )}
           </div>
