@@ -4,6 +4,7 @@ import { categories } from "../utils/data";
 import { motion } from "framer-motion";
 import RowContainer from "./RowContainer";
 import { useStateValue } from "../context/StateProvider";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState("chicken");
@@ -17,30 +18,30 @@ const MenuContainer = () => {
           Our Hot Dishes
         </p>
 
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none">
+        <ScrollContainer className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none no-scbar">
           {categories &&
             categories.map((category) => (
               <motion.div
-                whileTap={{ scale: 0.75 }}
+                whileTap={{ scale: 0.85 }}
                 key={category.id}
                 className={`group ${
-                  filter === category.urlParamName ? "bg-cartNumBg" : "bg-card"
-                } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-cartNumBg `}
+                  filter === category.urlParamName
+                    ? "bg-org3 hover:bg-org4"
+                    : "bg-card"
+                } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-org2 duration-200 `}
                 onClick={() => setFilter(category.urlParamName)}
               >
                 <div
                   className={`w-10 h-10 rounded-full shadow-lg ${
-                    filter === category.urlParamName
-                      ? "bg-white"
-                      : "bg-cartNumBg"
-                  } group-hover:bg-white flex items-center justify-center`}
+                    filter === category.urlParamName ? "bg-white" : "bg-org3"
+                  } group-hover:bg-white flex items-center justify-center duration-200`}
                 >
                   <IoFastFood
                     className={`${
                       filter === category.urlParamName
                         ? "text-textColor"
                         : "text-white"
-                    } group-hover:text-textColor text-lg`}
+                    } group-hover:text-textColor text-lg duration-200`}
                   />
                 </div>
                 <p
@@ -48,19 +49,16 @@ const MenuContainer = () => {
                     filter === category.urlParamName
                       ? "text-white"
                       : "text-textColor"
-                  } group-hover:text-white`}
+                  } group-hover:text-white duration-200`}
                 >
                   {category.name}
                 </p>
               </motion.div>
             ))}
-        </div>
+        </ScrollContainer>
 
         <div className="w-full">
-          <RowContainer
-            flag={false}
-            data={foodItems?.filter((n) => n.category == filter)}
-          />
+          <RowContainer data={foodItems?.filter((n) => n.category == filter)} />
         </div>
       </div>
     </section>

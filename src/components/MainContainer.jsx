@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import HomeContainer from "./HomeContainer";
 import { motion } from "framer-motion";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdOutlineRadioButtonChecked,
+} from "react-icons/md";
 import RowContainer from "./RowContainer";
 import { useStateValue } from "@component/context/StateProvider";
 import MenuContainer from "./MenuContainer";
@@ -13,6 +17,13 @@ const MainContainer = () => {
 
   useEffect(() => {}, [scrollValue, cartShow]);
 
+  function goLeft() {
+    setScrollValue((prev) => prev - 200);
+  }
+  function goRight() {
+    setScrollValue((prev) => prev + 200);
+  }
+
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
@@ -22,26 +33,27 @@ const MainContainer = () => {
             Our Fresh & healthy foods
           </p>
 
-          <div className="hidden md:flex gap-3 items-center">
+          {/* <div className="hidden md:flex gap-3 items-center">
             <motion.div
-              whileTap={{ scale: 0.75 }}
-              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
+              // whileTap={{ scale: 0.75 }}
+              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 transition-all duration-300 ease-in-out hover:shadow-lg flex items-center justify-center select-none"
+              onClick={goLeft}
             >
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
 
             <motion.div
-              whileTap={{ scale: 0.75 }}
-              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
+              // whileTap={{ scale: 0.75 }}
+              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 transition-all duration-300 ease-in-out hover:shadow-lg flex items-center justify-center select-none"
+              onClick={goRight}
             >
               <MdChevronRight className="text-lg text-white" />
             </motion.div>
-          </div>
+          </div> */}
         </div>
 
         <RowContainer
           scrollValue={scrollValue}
-          flag={true}
           data={foodItems?.filter((n) => n.category === "fruits")}
         />
       </section>
