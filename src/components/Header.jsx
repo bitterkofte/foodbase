@@ -35,10 +35,11 @@ const Header = () => {
         type: actionType.SET_USER,
         user: providerData[0],
       });
-      if (typeof window !== "undefined") {
-        // console.log("OLDU");
-        localStorage.setItem("user", JSON.stringify(providerData[0]));
-      }
+      // if (typeof window !== "undefined") {
+      //   // console.log("OLDU");
+      //   localStorage.setItem("user", JSON.stringify(providerData[0]));
+      // }
+      localStorage.setItem("user", JSON.stringify(providerData[0]));
     } else {
       setIsMenu(!isMenu);
     }
