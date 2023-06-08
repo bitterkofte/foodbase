@@ -10,10 +10,9 @@ import {
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 import { app } from "../firebase.config";
 
-import Logo from "../img/logo.png";
 import Avatar from "../img/avatar.png";
 import FB from "../img/FoodBase2.png";
 import { useStateValue } from "@component/context/StateProvider";
@@ -21,6 +20,7 @@ import { actionType } from "@component/context/reducer";
 
 const Header = () => {
   const firebaseAuth = getAuth(app);
+  const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
 
@@ -35,10 +35,6 @@ const Header = () => {
         type: actionType.SET_USER,
         user: providerData[0],
       });
-      // if (typeof window !== "undefined") {
-      //   // console.log("OLDU");
-      //   localStorage.setItem("user", JSON.stringify(providerData[0]));
-      // }
       localStorage.setItem("user", JSON.stringify(providerData[0]));
     } else {
       setIsMenu(!isMenu);
@@ -46,33 +42,21 @@ const Header = () => {
     
   };
 
-  const signInPop = async () => {
+  const popUpSignIn = async () => {
     if (!user) {
       signInWithPopup(firebaseAuth, provider)
         .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
-          // The signed-in user info.
           const kullanici = result.user;
-          console.log('Kullanıcı Bilgileri: ', kullanici);
+          console.log('Kullanici Bilgileri: ', kullanici);
           dispatch({
             type: actionType.SET_USER,
             user: kullanici.providerData[0],
           });
           localStorage.setItem("user", JSON.stringify(kullanici.providerData[0]));
-          // IdP data available using getAdditionalUserInfo(result)
-          // ...
         }).catch((error) => {
-          // Handle Errors here.
-          // const errorCode = error.code;
-          // const errorMessage = error.message;
-          // // The email of the user's account used.
-          // const email = error.customData.email;
-          // // The AuthCredential type that was used.
-          // const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(error)
-          // ...
         });
     } else {
       setIsMenu(!isMenu);
@@ -154,8 +138,7 @@ const Header = () => {
           </motion.div>
 
           <div className="relative">
-            <motion.div onClick={signInPop} whileTap={{ scale: 0.6 }}>
-              {/* <Image src={user ? user.photoURL : Avatar} className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-md rounded-full' alt='user' width={100} height={100}/> */}
+            <motion.div onClick={popUpSignIn} whileTap={{ scale: 0.6 }}>
               {user ? (
                 <Image
                   src={user ? user.photoURL : Avatar}

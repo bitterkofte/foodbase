@@ -6,11 +6,13 @@ import { MdShoppingBasket } from "react-icons/md";
 import Plate from "../img/plate.png";
 import { actionType } from "@component/context/reducer";
 import ScrollContainer from "react-indiana-drag-scroll";
+import { useRouter } from "next/router";
 
-const RowContainer = ({ flag, data, scrollValue }) => {
+const RowContainer = ({ flag, data }) => {
   const rowContainer = useRef();
   const [items, setItems] = useState([]);
   const [{ cartItems }, dispatch] = useStateValue();
+  const router = useRouter();
 
   const increase = (item) => {
     function inquery(i) {
@@ -37,16 +39,12 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
-  // useEffect(() => {
-  //   rowContainer.current.scrollLeft += scrollValue;
-  // }, [scrollValue]);
-
   useEffect(() => {
     addtocart();
   }, [items]);
 
   return (
-    <ScrollContainer className="w-full flex items-center gap-3 my-5 scroll-smooth overflow-x-scroll scrollbar-none">
+    <ScrollContainer className="w-full flex items-center gap-3 my-5 scroll-smooth overflow-x-scroll scrollbar-none select-none">
       {data && data.length > 0 ? (
         data.map((item) => (
           <div
@@ -61,9 +59,10 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                 <Image
                   src={item?.imageURL}
                   alt="image"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain pointer-events-none cursor-pointer"
                   width={700}
                   height={700}
+                  onClick={() => router.push(`product/${item.id}`)}
                   id="rsm"
                 />
               </motion.div>
@@ -77,7 +76,10 @@ const RowContainer = ({ flag, data, scrollValue }) => {
             </div>
 
             <div className="w-full flex flex-col items-end justify-end -mt-8">
-              <p className="text-textColor font-semibold text-base md:text-lg">
+              <p
+                className="text-textColor font-semibold text-base md:text-lg cursor-pointer"
+                onClick={() => router.push(`product/${item.id}`)}
+              >
                 {item?.title}
               </p>
               <p className="mt-1 text-sm text-gray-500">

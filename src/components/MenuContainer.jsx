@@ -10,7 +10,7 @@ const MenuContainer = () => {
   const [filter, setFilter] = useState("chicken");
 
   const [{ foodItems }, dispatch] = useStateValue();
-
+  console.log("FOOD: ", foodItems);
   return (
     <section className="w-full my-6" id="menu">
       <div className="w-full flex flex-col items-center justify-center">
