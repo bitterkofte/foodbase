@@ -50,12 +50,13 @@ module.exports = {
         620: "620px",
       },
       screens: {
-        'mx': {'max': '639px'},
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
+        'xsm': "360px",
+        'sm': "640px",
+        'md': "768px",
+        'lg': "1024px",
+        'xl': "1280px",
         "2xl": "1536px",
+        // 'mx': {'max': '639px'},
       },
       colors: {
         modalColor: "#2e2e2ebd",
