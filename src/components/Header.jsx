@@ -26,7 +26,7 @@ const Header = () => {
 
   const [isMenu, setIsMenu] = useState(false);
 
-  const login = async () => {
+  const loginMobile = async () => {
     if (!user) {
       const {
         user: { refreshToken, providerData },
@@ -200,7 +200,7 @@ const Header = () => {
           </div>
 
           <div className="relative">
-            <motion.div onClick={login} whileTap={{ scale: 0.6 }}>
+            <motion.div onClick={loginMobile} whileTap={{ scale: 0.6 }}>
               {user ? (
                 <Image
                   src={user ? user.photoURL : Avatar}

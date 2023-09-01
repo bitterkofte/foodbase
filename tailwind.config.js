@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'horin': 'box-shadow: 12px 0px 15px -4px rgba(255, 0, 0, 1) inset, -12px 0 15px -4px rgba(58, 58, 58, 0.8) inset'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -55,6 +58,7 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
+        modalColor: "#2e2e2ebd",
         headingColor: "#2e2e2e",
         textColor: "#515151",
         cartNumBg: "#e80013",
