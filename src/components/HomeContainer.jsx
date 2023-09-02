@@ -36,10 +36,7 @@ const HomeContainer = () => {
         </p>
 
         <p className="text-base text-textColor text-center md:text-left md:w-[80%]">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima velit
-          eaque fugit distinctio est nam voluptatum architecto, porro iusto
-          deserunt recusandae ipsa minus eos sunt, dolores illo repellat facere
-          suscipit!
+        Your weekly grocery haul, now delivered on demand. No time slots, no substitutions, and over 1500 products, We are currently delivering in Chicago, New York and Boston!
         </p>
 
         <button
@@ -87,7 +84,7 @@ const HomeContainer = () => {
                 </p>
 
                 <p className="text-sm font-semibold text-headingColor">
-                  <span className="text-xs text-red-600">₺</span> {n.price}
+                  {n.price} <span className="text-xs text-red-600">₺</span>
                 </p>
               </div>
             ))}

@@ -15,6 +15,13 @@ export const saveItem = async (data) => {
   });
 };
 
+// Updating Item
+export const updateItem = async (data, id) => {
+  await setDoc(doc(firestore, "foodItems", id), data, {
+    merge: true,
+  });
+};
+
 // getall food items
 export const getAllFoodItems = async () => {
   const items = await getDocs(

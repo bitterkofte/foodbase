@@ -44,6 +44,12 @@ const RowContainer = ({ flag, data }) => {
   }, [items]);
 
   return (
+    <section className='w-full my-6'>
+      <div className="w-full flex items-center justify-between">
+          <p className="text-2xl font-semibold capitalize relative text-headingColor before:absolute before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100">
+            Our Fresh & healthy foods
+          </p>
+      </div>
     <ScrollContainer className="w-full flex items-center gap-3 my-5 scroll-smooth overflow-x-scroll scrollbar-none select-none">
       {data && data.length > 0 ? (
         data.map((item) => (
@@ -109,6 +115,7 @@ const RowContainer = ({ flag, data }) => {
         </div>
       )}
     </ScrollContainer>
+    </section>
   );
 };
 

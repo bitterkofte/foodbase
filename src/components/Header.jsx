@@ -26,7 +26,7 @@ const Header = () => {
 
   const [isMenu, setIsMenu] = useState(false);
 
-  const login = async () => {
+  const loginMobile = async () => {
     if (!user) {
       const {
         user: { refreshToken, providerData },
@@ -200,7 +200,7 @@ const Header = () => {
           </div>
 
           <div className="relative">
-            <motion.div onClick={login} whileTap={{ scale: 0.6 }}>
+            <motion.div onClick={loginMobile} whileTap={{ scale: 0.6 }}>
               {user ? (
                 <Image
                   src={user ? user.photoURL : Avatar}
@@ -230,15 +230,21 @@ const Header = () => {
                   </Link>
                 )}
                 <ul className="flex items-center flex-col">
-                  <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-                    Home
-                  </li>
-                  <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-                    Menu
-                  </li>
-                  <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-                    About Us
-                  </li>
+                  <Link href={"/"} >
+                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                      Home
+                    </li>
+                  </Link>
+                  <Link href={"/#menu"} >
+                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                      Menu
+                    </li>
+                    </Link>
+                  <Link href={"/#about"} >
+                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                      About Us
+                    </li>
+                  </Link>
                   <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
                     {user ? "DOLU" : "BOŞ"}
                   </li>

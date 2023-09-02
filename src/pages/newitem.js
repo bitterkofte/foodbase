@@ -138,6 +138,7 @@ const newitem = () => {
         const data = {
           id: `${Date.now()}`,
           title: title,
+          stars: 0,
           imageURL: imageAsset,
           category: category,
           calories: calories,
