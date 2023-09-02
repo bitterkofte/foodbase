@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useStateValue } from "@component/context/StateProvider";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MdShoppingBasket } from "react-icons/md";
+import { MdShoppingBasket, MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 import Plate from "../img/plate.png";
 import { actionType } from "@component/context/reducer";
 import ScrollContainer from "react-indiana-drag-scroll";
@@ -87,6 +87,9 @@ const RowContainer = ({ flag, data }) => {
                 onClick={() => router.push(`product/${item.id}`)}
               >
                 {item?.title}
+              </p>
+              <p className="flex text-amber-500 drop-shadow-md">
+                {Array(5).fill(0).map((m, i) => (Math.round(item?.stars) >= i+1 ? <MdOutlineStar/> : <MdOutlineStarOutline/>))}
               </p>
               <p className="mt-1 text-sm text-gray-500">
                 {item?.calories} Calories

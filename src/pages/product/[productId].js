@@ -106,7 +106,7 @@ const ProductsItem = () => {
     <div className="xsm:mt-24 md:mt-40 mb-20">
       {/* ANCHOR Review Modal */}
       <AnimatePresence>
-      {wModal && <WarningModal wMTitle={"No User"} wMDesc={"You have to sign in to your account."}/>}
+      {wModal && <WarningModal color={"red"} setWModal={setWModal} wMTitle={"No User"} wMDesc={"You have to sign in to your account first to make a review."}/>}
       {reviewModal && (
         <div className="z-[99] fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
           <motion.div
