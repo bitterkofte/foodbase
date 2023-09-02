@@ -1,9 +1,15 @@
 import Image from "next/image";
 import {MdOutlineStar, MdOutlineStarOutline} from 'react-icons/md';
+import { motion } from "framer-motion";
 
 const ReviewCard = ({userInfo, reviewInfo}) => {
   return (
-    <div key={reviewInfo.date} className="flex items-start gap-4 p-5 bg-neutral-300 rounded-xl shadow-md">
+    <motion.div key={reviewInfo.date} 
+      initial={{ y: 500, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      // exit={{ y: -3000 }}
+      transition={{ duration: 0.5 }}
+      className="flex items-start gap-4 p-5 bg-neutral-300 rounded-xl shadow-md">
       <Image className="object-contain rounded-full drop-shadow-md" src={userInfo.photoURL} alt="pp" width={36} height={36} />
       <div className='w-full'>
         <div className='flex justify-between gap-2 items-center'>
@@ -16,7 +22,7 @@ const ReviewCard = ({userInfo, reviewInfo}) => {
         <h3 className="tracking-wider font-semibold text-lg">{reviewInfo.title}</h3>
         <p>{reviewInfo.description}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
