@@ -139,6 +139,7 @@ const newitem = () => {
           id: `${Date.now()}`,
           title: title,
           stars: 0,
+          reviews: [],
           imageURL: imageAsset,
           category: category,
           calories: calories,

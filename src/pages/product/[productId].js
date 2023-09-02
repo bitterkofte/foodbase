@@ -10,6 +10,7 @@ import CartContainer from "@component/components/CartContainer";
 import ReviewCard from "@component/components/ReviewCard";
 import { MdClose, MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
+import WarningModal from "@component/components/WarningModal";
 
 const ProductsItem = () => {
   const [stars, setStars] = useState(0);
@@ -18,6 +19,7 @@ const ProductsItem = () => {
   const [revDesc, setRevDesc] = useState("");
   const [items, setItems] = useState([]);
   const [reviewModal, setReviewModal] = useState(false);
+  const [wModal, setWModal] = useState(false);
   // const [product, setProduct] = useState();
   const [{ user, foodItems, cartItems, cartShow }, dispatch] = useStateValue();
   const router = useRouter();
@@ -27,10 +29,6 @@ const ProductsItem = () => {
 
   let product;
   if (prd) [product] = prd;
-
-  // const makeAReview = () => {
-
-  // }
 
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
@@ -80,16 +78,21 @@ const ProductsItem = () => {
     setReviewModal(false)
   }
 
+  const makeAReview = () => {
+    if(!user){
+      console.log("GİRİŞ YAP")
+      setWModal(true);
+    }
+    else setReviewModal(true);
+  }
+
   const uploadReview = () => {
-    // console.log("title: ", revTitle);
-    // console.log("desc: ", revDesc);
-    // console.log("date: ", Date.now());
-    // console.log('product: ', product)
     let newR = {
       title: revTitle,
       description: revDesc,
       stars: stars,
       username: user.displayName,
+      userphoto: user.photoURL,
       date: Date.now(),
     };
     if(product?.stars === 0) product.stars = stars;
@@ -103,6 +106,7 @@ const ProductsItem = () => {
     <div className="xsm:mt-24 md:mt-40 mb-20">
       {/* ANCHOR Review Modal */}
       <AnimatePresence>
+      {wModal && <WarningModal wMTitle={"No User"} wMDesc={"You have to sign in to your account."}/>}
       {reviewModal && (
         <div className="z-[99] fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
           <motion.div
@@ -242,7 +246,7 @@ const ProductsItem = () => {
           <h2 className="text-2xl font-bold">Reviews</h2>
           <div
             className="py-2 px-4 rounded-xl hover:shadow-lg bg-blue-600 text-neutral-100 text-center hover:scale-105 cursor-pointer transition-all duration-200"
-            onClick={() => setReviewModal(true)}
+            onClick={makeAReview}
           >
             Make a review
           </div>
