@@ -31,7 +31,7 @@ const Header = () => {
   const provider = new GoogleAuthProvider();
   const [isMenu, setIsMenu] = useState(false);
   const [{ user, foodItems, cartShow, cartItems }, dispatch] = useStateValue();
-  const data = foodItems;
+  const data = foodItems.filter(f => f.title.toLowerCase().includes(searchValue.toLowerCase()));
 
   const loginMobile = async () => {
     if (!user) {
@@ -107,7 +107,7 @@ const Header = () => {
 
   return (
     <div className=''>
-    <header className="fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg">
+    <header className={`${isSearchActive ? "bg-headerColor" : ""} fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg`}>
       {/* SECTION desktop */}
       <div className="hidden md:flex w-full items-center justify-between">
         <Link href={"/"} className="flex items-center gap-2">
@@ -129,9 +129,9 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-8 font-[500]"
           >
-            <li className="flex items-center px-2 text-base text-textColor hover:text-headingColor border-2 rounded-full border-neutral-500 duration-100 transition-all ease-in-out cursor-pointer">
-              <input className="text-sm py-1 bg-transparent border-none outline-none " type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
-              {isSearchActive ? <MdClose onClick={closeSearching} /> : <MdSearch />}
+            <li className={`flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 ${isSearchActive ? "bg-inputColor" : ""} duration-100`}>
+              <input className="text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
+              {isSearchActive ? <MdClose className="hover:text-red-600 transition-all" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-400 transition-all" onClick={() => setIsSearchActive(true)}/>}
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/"} className="">
@@ -311,8 +311,8 @@ const Header = () => {
             alt="not-found"
             id="rsm"
           />
-          <p className="text-xl text-gray-500 font-semibold my-5 grayscale">
-            We’re fresh out of this category 😔
+          <p className="text-xl text-gray-400 font-semibold my-5 grayscale select-none">
+            We could not find any related product. 😔
           </p>
         </div>
       )}

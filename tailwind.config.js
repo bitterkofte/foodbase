@@ -60,6 +60,8 @@ module.exports = {
       },
       colors: {
         modalColor: "#2e2e2ebd",
+        headerColor: "#ffffff74",
+        inputColor: "#ffd8bf",
         headingColor: "#2e2e2e",
         textColor: "#515151",
         cartNumBg: "#e80013",

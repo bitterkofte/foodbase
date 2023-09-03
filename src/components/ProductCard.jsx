@@ -41,9 +41,13 @@ const ProductCard = ({item}) => {
   }, [items]);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.4 }}
       key={item?.id}
-      className="w-275 h-auto min-w-[275px] md:w-[320px] md:min-w-[300px] rounded-2xl py-4 px-4 mx:my-5 border-2 border-org1 bg-org0 hover:drop-shadow-lg active:drop-shadow-lg flex flex-col items-center justify-evenly relative"
+      className="w-275 h-auto min-w-[275px] md:w-[320px] md:min-w-[300px] rounded-2xl py-4 px-4 mx:my-5 border-2 border-org1 bg-org0 hover:drop-shadow-lg active:drop-shadow-lg flex flex-col items-center justify-evenly self-start relative"
     >
       <div className="w-full flex items-center justify-between">
         <motion.div
@@ -88,7 +92,7 @@ const ProductCard = ({item}) => {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
