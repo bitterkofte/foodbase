@@ -6,6 +6,8 @@ import {
   MdAccountCircle,
   MdAdd,
   MdLogout,
+  MdSearch,
+  MdClose,
 } from "react-icons/md";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -17,14 +19,19 @@ import Avatar from "../img/avatar.png";
 import FB from "../img/FoodBase2.png";
 import { useStateValue } from "@component/context/StateProvider";
 import { actionType } from "@component/context/reducer";
+import ProductCard from "./ProductCard";
+import Plate from "../img/plate.png";
+
 
 const Header = () => {
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const firebaseAuth = getAuth(app);
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
-
   const [isMenu, setIsMenu] = useState(false);
+  const [{ user, foodItems, cartShow, cartItems }, dispatch] = useStateValue();
+  const data = foodItems;
 
   const loginMobile = async () => {
     if (!user) {
@@ -39,7 +46,6 @@ const Header = () => {
     } else {
       setIsMenu(!isMenu);
     }
-    
   };
 
   const popUpSignIn = async () => {
@@ -79,9 +85,30 @@ const Header = () => {
     });
   };
 
+  const closeSearching = () => {
+    setSearchValue("");
+    setIsSearchActive(false);
+  }
+
+  useEffect(() => {
+    if (isSearchActive) {
+      // Disable scrolling on the background page
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Enable scrolling on the background page
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      // Re-enable scrolling when the overlay is unmounted (cleanup)
+      document.body.style.overflow = 'auto';
+    };
+  }, [isSearchActive]);
+
   return (
+    <div className=''>
     <header className="fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg">
-      {/* desktop */}
+      {/* SECTION desktop */}
       <div className="hidden md:flex w-full items-center justify-between">
         <Link href={"/"} className="flex items-center gap-2">
           <Image
@@ -91,7 +118,7 @@ const Header = () => {
             alt="logo"
             className="w-16 object-cover drop-shadow-md"
             id="rsm"
-          />
+            />
           <p className="text-headingColor text-xl font-[700]">FoodBase</p>
         </Link>
 
@@ -102,6 +129,10 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-8 font-[500]"
           >
+            <li className="flex items-center px-2 text-base text-textColor hover:text-headingColor border-2 rounded-full border-neutral-500 duration-100 transition-all ease-in-out cursor-pointer">
+              <input className="text-sm py-1 bg-transparent border-none outline-none " type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
+              {isSearchActive ? <MdClose onClick={closeSearching} /> : <MdSearch />}
+            </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/"} className="">
                 Home
@@ -117,7 +148,7 @@ const Header = () => {
                 Menu
               </Link>
             </li>
-            <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer" onClick={() => setIsSearchActive(true)}>
               {user ? "DOLU" : "BOŞ"}
             </li>
           </motion.ul>
@@ -180,7 +211,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* mobile */}
+      {/* SECTION mobile */}
       <div className="flex items-center justify-between md:hidden w-full">
         <Link href={"/"} className="flex items-center gap-2">
           <Image src={FB} alt="logo" className="w-8 object-cover" id="rsm" />
@@ -262,6 +293,33 @@ const Header = () => {
         </div>
       </div>
     </header>
+
+    {/* SECTION Filtered Products */}
+    {isSearchActive &&
+    <>
+    {/* <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div> */}
+    <div className='fixed top-0 left-0 w-full h-full z-[4] sm:py-24 lg:py-32 px-10 flex flex-wrap justify-center gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
+      {data && data.length > 0 ? (
+        data.map((item) => <ProductCard item={item} />)
+      ) : (
+        <div className="w-full flex flex-col items-center justify-center">
+          <Image
+            src={Plate}
+            className="h-150 object-contain grayscale"
+            width={300}
+            height={300}
+            alt="not-found"
+            id="rsm"
+          />
+          <p className="text-xl text-gray-500 font-semibold my-5 grayscale">
+            We’re fresh out of this category 😔
+          </p>
+        </div>
+      )}
+    </div>
+    </>
+    }
+    </div>
   );
 };
 
