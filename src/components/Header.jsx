@@ -31,7 +31,7 @@ const Header = () => {
   const provider = new GoogleAuthProvider();
   const [isMenu, setIsMenu] = useState(false);
   const [{ user, foodItems, cartShow, cartItems }, dispatch] = useStateValue();
-  const data = foodItems.filter(f => f.title.toLowerCase().includes(searchValue.toLowerCase()));
+  const data = foodItems?.filter(f => f.title.toLowerCase().includes(searchValue.toLowerCase()));
 
   const loginMobile = async () => {
     if (!user) {
