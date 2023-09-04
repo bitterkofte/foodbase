@@ -51,7 +51,7 @@ const ProductCard = ({item}) => {
     >
       <div className="w-full flex items-center justify-between">
         <motion.div
-          className="w-40 h-40 -mt-10 drop-shadow-md hover:drop-shadow-xl "
+          className="w-40 h-40 -mt-10 drop-shadow-md hover:drop-shadow-xl"
           whileHover={{ scale: 1.2 }}
         >
           <Image
@@ -81,7 +81,7 @@ const ProductCard = ({item}) => {
           {item?.title}
         </p>
         <p className="flex text-amber-500 drop-shadow-md">
-          {Array(5).fill(0).map((m, i) => (Math.round(item?.stars) >= i+1 ? <MdOutlineStar/> : <MdOutlineStarOutline/>))}
+          {Array(5).fill(0).map((m, i) => (Math.round(item?.stars) >= i+1 ? <MdOutlineStar key={i}/> : <MdOutlineStarOutline key={i}/>))}
         </p>
         <p className="mt-1 text-sm text-gray-500">
           {item?.calories} Calories

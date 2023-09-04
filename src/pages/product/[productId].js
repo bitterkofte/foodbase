@@ -17,6 +17,9 @@ const ProductsItem = () => {
   const [hoverStars, setHoverStars] = useState(0);
   const [revTitle, setRevTitle] = useState("");
   const [revDesc, setRevDesc] = useState("");
+  const [rMStarError, setRMStarError] = useState(false);
+  const [rMTitleError, setRMTitleError] = useState(false);
+  const [rMDescError, setRMDescError] = useState(false);
   const [items, setItems] = useState([]);
   const [reviewModal, setReviewModal] = useState(false);
   const [wModal, setWModal] = useState(false);
@@ -87,19 +90,31 @@ const ProductsItem = () => {
   }
 
   const uploadReview = () => {
-    let newR = {
-      title: revTitle,
-      description: revDesc,
-      stars: stars,
-      username: user.displayName,
-      userphoto: user.photoURL,
-      date: Date.now(),
-    };
-    if(product?.stars === 0) product.stars = stars;
-    else product.stars = Number.parseFloat(((product.stars * product.reviews.length) + stars) / (product.reviews.length + 1)).toFixed(3);
-    product?.reviews.push(newR);
-    updateItem(product, product.id);
-    closeModalHandler();
+    if (stars === 0 || revTitle === '' || revDesc === '') {
+      if(stars === 0) setRMStarError(true);
+      if(revTitle === '') setRMTitleError(true);
+      if(revDesc === '') setRMDescError(true);
+      setTimeout(() => {
+        setRMStarError(false);
+        setRMTitleError(false);
+        setRMDescError(false);
+      }, 2000);
+    }
+    else {
+      let newR = {
+        title: revTitle,
+        description: revDesc,
+        stars: stars,
+        username: user.displayName,
+        userphoto: user.photoURL,
+        date: Date.now(),
+      };
+      if(product?.stars === 0) product.stars = stars;
+      else product.stars = Number.parseFloat(((product.stars * product.reviews.length) + stars) / (product.reviews.length + 1)).toFixed(3);
+      product?.reviews.push(newR);
+      updateItem(product, product.id);
+      closeModalHandler();
+    }
   };
 
   return (
@@ -120,11 +135,11 @@ const ProductsItem = () => {
           <motion.div
             initial={{ y: -2000 ,opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -3000, opacity: 0 }}
+            exit={{ y: -1000, opacity: 0 }}
             transition={{ duration: 0.3 }} 
             //fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
             className="relative w-2/6 flex flex-col gap-y-2 p-8 z-[101] bg-slate-200 rounded-md">
-            <h2 className="font-semibold mb-3">Make A Review</h2>
+            <h2 className="text-xl font-semibold mb-3">Make A Review</h2>
             <MdClose
               onClick={closeModalHandler}
               className="absolute top-3 right-3 bg-slate-500 hover:bg-red-500 text-slate-100 rounded-md transition-all cursor-pointer"
@@ -132,52 +147,52 @@ const ProductsItem = () => {
             />
             <div className='mx-auto relative'>
               {hoverStars === 0 ?
-              <div className='mb-2 mx-auto flex' onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)}>
+              <div className={`mb-2 mx-auto flex duration-300 ${rMStarError ? 'text-red-500' : 'text-amber-500'}`} onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)}>
                 {stars >= 1
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(1)} onClick={() => setStars(1)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(1)} onClick={() => setStars(1)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(1)} onClick={() => setStars(1)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(1)} onClick={() => setStars(1)}/> }
                 {stars >= 2
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(2)} onClick={() => setStars(2)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(2)} onClick={() => setStars(2)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(2)} onClick={() => setStars(2)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(2)} onClick={() => setStars(2)}/> }
                 {stars >= 3
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(3)} onClick={() => setStars(3)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(3)} onClick={() => setStars(3)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(3)} onClick={() => setStars(3)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(3)} onClick={() => setStars(3)}/> }
                 {stars >= 4
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(4)} onClick={() => setStars(4)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(4)} onClick={() => setStars(4)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(4)} onClick={() => setStars(4)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(4)} onClick={() => setStars(4)}/> }
                 {stars === 5
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(5)} onClick={() => setStars(5)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(5)} onClick={() => setStars(5)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(5)} onClick={() => setStars(5)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(5)} onClick={() => setStars(5)}/> }
               </div>
               :
-              <div className='mb-2 mx-auto flex'>
+              <div className='mb-2 mx-auto flex text-amber-500'>
                 {hoverStars >= 1
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(1)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(1)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(1)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(1)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(1)}/> }
                 {hoverStars >= 2
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(2)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(2)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(2)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(2)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(2)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(2)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(2)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(2)}/> }
                 {hoverStars >= 3
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(3)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(3)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(3)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(3)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(3)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(3)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(3)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(3)}/> }
                 {hoverStars >= 4
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(4)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(4)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(4)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(4)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(4)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(4)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(4)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(4)}/> }
                 {hoverStars === 5
-                ? <MdOutlineStar        className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(5)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(5)}/>
-                : <MdOutlineStarOutline className="cursor-pointer text-amber-500" size={30} onMouseEnter={() => setHoverStars(5)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(5)}/> }
+                ? <MdOutlineStar        className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(5)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(5)}/>
+                : <MdOutlineStarOutline className="cursor-pointer" size={35} onMouseEnter={() => setHoverStars(5)} onMouseLeave={() => setHoverStars(0)} onClick={() => setStars(5)}/> }
               </div>
               }
             </div>
             <input
-              className="px-3 py-2 rounded-md outline-none focus:shadow-md transition-all duration-300"
+              className={`px-3 py-2 rounded-md outline-none focus:shadow-md transition-all duration-300 ${rMTitleError && 'bg-red-400 placeholder:text-white'}`}
               placeholder="Title"
               type="text"
               value={revTitle}
               onChange={(e) => setRevTitle(e.target.value)}
             />
             <textarea
-              className="px-3 py-2 mb-3 rounded-md outline-none focus:shadow-md transition-all duration-300"
+              className={`px-3 py-2 mb-3 rounded-md outline-none focus:shadow-md transition-all duration-300 ${rMDescError && 'bg-red-400 placeholder:text-white'}`}
               placeholder="Description"
               rows="5"
               type="text"
@@ -186,7 +201,7 @@ const ProductsItem = () => {
             />
             <button
               onClick={uploadReview}
-              className="py-2 px-3 bg-slate-500 hover:bg-amber-500 text-neutral-200 rounded-md transition-all"
+              className={`py-2 px-3 bg-slate-500 text-neutral-200 rounded-md transition-all ${(rMStarError || rMTitleError || rMDescError) ? 'hover:bg-red-500' : 'hover:bg-amber-500'}`}
             >
               Send
             </button>

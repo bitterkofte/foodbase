@@ -72,12 +72,12 @@ const CartItem = ({ item, setFlag, flag }) => {
       </div>
 
       {/* button section */}
-      <div className="group flex items-center gap-2 ml-auto cursor-pointer">
+      <div className="group flex items-center gap-2 ml-auto">
         <motion.div
           whileTap={{ scale: 0.75 }}
           onClick={() => updateQty("remove", item?.id)}
         >
-          <BiMinus className="text-gray-50 " />
+          <BiMinus className="text-gray-50 cursor-pointer hover:text-red-500 duration-300" size={23} />
         </motion.div>
 
         <p className="w-5 h-5 rounded-sm bg-cartBg text-gray-50 flex items-center justify-center">
@@ -88,7 +88,7 @@ const CartItem = ({ item, setFlag, flag }) => {
           whileTap={{ scale: 0.75 }}
           onClick={() => updateQty("add", item?.id)}
         >
-          <BiPlus className="text-gray-50 " />
+          <BiPlus className="text-gray-50 cursor-pointer hover:text-green-500 duration-300" size={23} />
         </motion.div>
       </div>
     </div>

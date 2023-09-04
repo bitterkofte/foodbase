@@ -43,17 +43,17 @@ const CartContainer = () => {
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
-      className="fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]"
+      className="fixed top-0 right-0 w-full md:w-375 h-screen bg-neutral-100 shadow-black shadow-2xl flex flex-col z-[101] select-none"
     >
-      <div className="w-full flex items-center justify-between p-4 cursor-pointer">
+      <div className="w-full flex items-center justify-between p-4">
         <motion.div whileTap={{ scale: 0.75 }} onClick={showCart}>
-          <MdOutlineKeyboardBackspace className="text-textColor text-3xl" />
+          <MdOutlineKeyboardBackspace className="text-textColor text-3xl cursor-pointer" />
         </motion.div>
         <p className="text-textColor text-lg font-semibold">Cart</p>
 
         <motion.p
           whileTap={{ scale: 0.75 }}
-          className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md  cursor-pointer text-textColor text-base"
+          className="flex items-center gap-2 p-1 px-2 my-2 bg-neutral-200 rounded-md hover:shadow-md cursor-pointer text-textColor text-base"
           onClick={clearCart}
         >
           Clear <RiRefreshFill />
@@ -80,21 +80,21 @@ const CartContainer = () => {
 
           {/* cart total section */}
           <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2">
-            <div className="w-full flex items-center justify-between">
-              <p className="text-gray-400 text-lg">Sub Total</p>
-              <p className="text-gray-400 text-lg">$ {tot}</p>
+            <div className="w-full flex items-center justify-between text-gray-700">
+              <p className="text-lg">Sub Total</p>
+              <p className="text-lg">{tot} ₺</p>
             </div>
-            <div className="w-full flex items-center justify-between">
-              <p className="text-gray-400 text-lg">Delivery</p>
-              <p className="text-gray-400 text-lg">$ 2.5</p>
+            <div className="w-full flex items-center justify-between text-gray-700">
+              <p className="text-lg">Delivery</p>
+              <p className="text-lg">9.5 ₺</p>
             </div>
 
             <div className="w-full border-b border-gray-600 my-2"></div>
 
-            <div className="w-full flex items-center justify-between">
-              <p className="text-gray-200 text-xl font-semibold">Total</p>
-              <p className="text-gray-200 text-xl font-semibold">
-                ${tot + 2.5}
+            <div className="w-full flex items-center justify-between text-neutral-100">
+              <p className="text-xl font-semibold">Total</p>
+              <p className="text-xl font-semibold">
+                {tot + 2.5} ₺
               </p>
             </div>
 
@@ -102,7 +102,7 @@ const CartContainer = () => {
               <motion.button
                 whileTap={{ scale: 0.8 }}
                 type="button"
-                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg transition-all duration-300"
               >
                 Order
               </motion.button>

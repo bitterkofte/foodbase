@@ -14,9 +14,12 @@ export const fetchUser = () => {
 export const fetchCart = () => {
   if (typeof window !== 'undefined') {
     // console.log("FETCHHHHHH")
+
     const cartInfo = localStorage.getItem("cartItems") !== "undefined"
     ? JSON.parse(localStorage.getItem("cartItems"))
     : localStorage.clear();
+
+    // const cartInfo = JSON.parse(localStorage.getItem("cartItems"));
   
     return cartInfo ? cartInfo : [];
   }

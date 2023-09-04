@@ -105,6 +105,16 @@ const Header = () => {
     };
   }, [isSearchActive]);
 
+  useEffect(() => {
+    // console.log("YEREL: ",localStorage.getItem('cartItems'));
+    // console.log("PARSE: ",JSON.parse(localStorage.getItem('cartItems')));
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: JSON.parse(localStorage.getItem('cartItems')),
+    });
+  }, [])
+  
+
   return (
     <div className=''>
     <header className={`${isSearchActive ? "bg-headerColor" : ""} fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg`}>
@@ -131,7 +141,7 @@ const Header = () => {
           >
             <li className={`flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 ${isSearchActive ? "bg-inputColor" : ""} duration-100`}>
               <input className="text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
-              {isSearchActive ? <MdClose className="hover:text-red-600 transition-all" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-400 transition-all" onClick={() => setIsSearchActive(true)}/>}
+              {isSearchActive ? <MdClose className="hover:text-red-600 transition-all cursor-pointer" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-400 transition-all cursor-pointer" onClick={() => setIsSearchActive(true)}/>}
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/"} className="">
@@ -213,12 +223,25 @@ const Header = () => {
 
       {/* SECTION mobile */}
       <div className="flex items-center justify-between md:hidden w-full">
+        {!isSearchActive ? 
         <Link href={"/"} className="flex items-center gap-2">
           <Image src={FB} alt="logo" className="w-8 object-cover" id="rsm" />
           <p className="text-headingColor text-xl font-[700]">FoodBase</p>
         </Link>
+        :
+        <div className='flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 duration-100'>
+          <input className="max-w-[180px] text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+          <MdClose className="text-red-600 transition-all" onClick={closeSearching} /> 
+        </div>
+        }
 
         <div className="flex items-center gap-5">
+          <div className=''>
+            {!isSearchActive && 
+              <MdSearch size={25} className="text-textColor" onClick={() => setIsSearchActive(true)} />
+            }
+          </div>
+
           <div className="relative" onClick={showCart}>
             <MdShoppingBasket size={25} className="text-textColor" />
             {cartItems && cartItems.length > 0 && (
@@ -298,7 +321,7 @@ const Header = () => {
     {isSearchActive &&
     <>
     {/* <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div> */}
-    <div className='fixed top-0 left-0 w-full h-full z-[4] sm:py-24 lg:py-32 px-10 flex flex-wrap justify-center gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
+    <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-10 flex flex-wrap justify-center gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
       {data && data.length > 0 ? (
         data.map((item) => <ProductCard item={item} />)
       ) : (
@@ -311,7 +334,7 @@ const Header = () => {
             alt="not-found"
             id="rsm"
           />
-          <p className="text-xl text-gray-400 font-semibold my-5 grayscale select-none">
+          <p className="text-xl text-center text-gray-400 font-semibold my-5 grayscale select-none">
             We could not find any related product. 😔
           </p>
         </div>
