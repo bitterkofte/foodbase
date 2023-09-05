@@ -110,7 +110,7 @@ const Header = () => {
     // console.log("PARSE: ",JSON.parse(localStorage.getItem('cartItems')));
     dispatch({
       type: actionType.SET_CART_ITEMS,
-      cartItems: JSON.parse(localStorage.getItem('cartItems')),
+      cartItems: JSON.parse(localStorage.getItem('Sepettekiler')),
     });
   }, [])
   

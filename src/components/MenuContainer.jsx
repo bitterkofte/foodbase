@@ -7,18 +7,19 @@ import { useStateValue } from "../context/StateProvider";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 const MenuContainer = () => {
-  const [filter, setFilter] = useState("chicken");
+  const [filter, setFilter] = useState("real-food");
 
   const [{ foodItems }, dispatch] = useStateValue();
-  // console.log("FOOD: ", foodItems);
+  console.log("FOOD: ", foodItems);
+  console.log("filter: ", filter);
   return (
     <section className="w-full my-6" id="menu">
       <div className="w-full flex flex-col items-center justify-center">
         <p id="menu" className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-16 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 mr-auto">
-          Our Hot Dishes
+          Categories
         </p>
 
-        <ScrollContainer className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none no-scbar">
+        <ScrollContainer className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none no-scbar select-none">
           {categories &&
             categories.map((category) => (
               <motion.div
@@ -58,7 +59,7 @@ const MenuContainer = () => {
         </ScrollContainer>
 
         <div className="w-full">
-          <RowContainer data={foodItems?.filter((n) => n.category == filter)} />
+          <RowContainer data={foodItems?.filter((n) => n.category === filter)} />
         </div>
       </div>
     </section>

@@ -62,7 +62,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <div className="w-full bg-orange-200 py-5 pt-7 flex flex-col justify-center items-center gap-10 transition-all select-none">
-      <div className='flex items-start gap-20'>
+      <div className='flex items-start gap-20 flex-wrap justify-center'>
         <Image
           src={FB}
           width={200}
@@ -83,7 +83,7 @@ const Footer = () => {
         ))}
       </div>
 
-      <div className='w-full pt-2 text-sm flex justify-center gap-2 border-t-2 border-neutral-500'>
+      <div className='w-full pt-2 px-5 text-xs md:text-sm flex justify-center gap-2 border-t-2 border-neutral-500'>
         {/* <div className='absolute top-0 left-0 w-full border-t-2 border-black'></div> */}
         <Link className="hover:text-neutral-600 duration-200" href={"/"}>©{currentYear} FoodBase</Link>
         <p>•</p>

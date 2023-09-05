@@ -36,19 +36,24 @@ export const heroData = [
 
 export const categories = [
   {
+    id: 0,
+    name: "Real Food",
+    urlParamName: "real-food",
+  },
+  {
     id: 1,
-    name: "Chicken",
-    urlParamName: "chicken",
+    name: "Fast Food",
+    urlParamName: "fast-food",
   },
   {
     id: 2,
-    name: "Curry",
-    urlParamName: "curry",
+    name: "Drinks",
+    urlParamName: "drinks",
   },
   {
     id: 3,
-    name: "Rice",
-    urlParamName: "rice",
+    name: "Desserts",
+    urlParamName: "desserts",
   },
   {
     id: 4,
@@ -62,13 +67,22 @@ export const categories = [
   },
   {
     id: 6,
+    name: "Vegetables",
+    urlParamName: "vegetables",
+  },
+  {
+    id: 7,
     name: "Icecreams",
     urlParamName: "icecreams",
   },
-
   {
-    id: 7,
-    name: "Soft Drinks",
-    urlParamName: "drinks",
+    id: 8,
+    name: "Snacks",
+    urlParamName: "snacks",
+  },
+  {
+    id: 9,
+    name: "Hot Drinks",
+    urlParamName: "hot-drinks",
   },
 ];

@@ -11,38 +11,6 @@ import ProductCard from "./ProductCard";
 
 const RowContainer = ({ flag, data }) => {
   const rowContainer = useRef();
-  // const [items, setItems] = useState([]);
-  // const [{ cartItems }, dispatch] = useStateValue();
-  // // const router = useRouter();
-
-  // const increase = (item) => {
-  //   function inquery(i) {
-  //     return i.title == item.title;
-  //   }
-  //   const found = cartItems.find(inquery);
-  //   // console.log('BULDUM : ',found)
-  //   if (found) {
-  //     console.log("ZATEN VAR");
-  //     // console.log('O DA BU: ', item.qty)
-  //     item.qty += 1;
-  //     // console.log('SAYISI: ', cartItems)
-  //   } else {
-  //     setItems([...cartItems, item]);
-  //     console.log("SEPET : ", cartItems);
-  //   }
-  // };
-
-  // const addtocart = () => {
-  //   dispatch({
-  //     type: actionType.SET_CART_ITEMS,
-  //     cartItems: items,
-  //   });
-  //   localStorage.setItem("cartItems", JSON.stringify(items));
-  // };
-
-  // useEffect(() => {
-  //   addtocart();
-  // }, [items]);
 
   return (
     <section className='w-full my-6 overflow-auto'>

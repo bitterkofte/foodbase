@@ -34,6 +34,7 @@ const ProductCard = ({item}) => {
       cartItems: items,
     });
     localStorage.setItem("cartItems", JSON.stringify(items));
+    localStorage.setItem("Sepettekiler", JSON.stringify(items));
   };
 
   useEffect(() => {

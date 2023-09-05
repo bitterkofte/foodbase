@@ -11,6 +11,9 @@ import ReviewCard from "@component/components/ReviewCard";
 import { MdClose, MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import WarningModal from "@component/components/WarningModal";
+import Head from "next/head";
+import NextHead from "@component/components/NextHead";
+import NextOGHead from "@component/components/NextOGHead";
 
 const ProductsItem = () => {
   const [stars, setStars] = useState(0);
@@ -118,6 +121,10 @@ const ProductsItem = () => {
   };
 
   return (
+    <>
+    {/* <NextHead/> */}
+    <NextOGHead product={product} />
+    
     <div className="xsm:mt-24 md:mt-40 mb-20">
       {/* ANCHOR Review Modal */}
       <AnimatePresence>
@@ -277,6 +284,7 @@ const ProductsItem = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
