@@ -2,7 +2,7 @@ import Head from "next/head";
 
 const NextOGHead = ({product}) => {
   
-  const imgURL = "http://localhost:3000" + "/api/og2/" + ("img=" + product.imageURL) + ("/pTitle=" + product.title);
+  // const imgURL = "http://localhost:3000" + "/api/og2/" + ("img=" + product.imageURL) + ("/pTitle=" + product.title);
   return (
     <Head>
         <title>{product.title}</title>

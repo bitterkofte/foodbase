@@ -21,7 +21,7 @@ const ReviewCard = ({reviewInfo}) => {
           <p className="text-base text-gray-700">{reviewInfo.username}</p>
           {/* <p className="text-gray-600">-</p> */}
           <div className='flex text-amber-500 drop-shadow-md'>
-            {Array(5).fill(0).map((m, i) => (reviewInfo.stars >= i+1 ? <MdOutlineStar/> : <MdOutlineStarOutline/>))}
+            {Array(5).fill(0).map((m, i) => (reviewInfo.stars >= i+1 ? <MdOutlineStar key={i}/> : <MdOutlineStarOutline key={i}/>))}
           </div>
         </div>
         <p className="text-xs text-gray-500 italic">{rDate}</p>
