@@ -51,3 +51,8 @@ Image, #rsm {
   user-select: none;
   -webkit-user-drag: none;
 }
+
+:target{
+  padding-top:88px; /* = to height of navbar */
+  margin-top:-88px;
+}

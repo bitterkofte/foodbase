@@ -22,7 +22,7 @@ const MainContainer = () => {
             Prominent Products
           </p>
       </div>
-      <RowContainer data={foodItems?.filter((n) => n.category === "fruits")} />
+      <RowContainer data={foodItems?.filter((n) => n.stars >= 3)} />
 
       {/* ANCHOR Second Showcase */}
       <MenuContainer />
