@@ -7,63 +7,6 @@ import { useStateValue } from "@component/context/StateProvider";
 import { actionType } from "@component/context/reducer";
 
 const ProductCard = ({item, items, increase, setItems}) => {
-  const router = useRouter();
-  // const [items, setItems] = useState([]);
-  // const [ urun, setUrun ] = useState([]);
-  const [activateSepet, setActivateSepet] = useState(false);
-  const [{ cartItems, sepet }, dispatch] = useStateValue();
-
-  // const increase = (item) => {
-  //   const found = cartItems.find((i) => i.title === item.title);
-  //   // console.log('BULDUM : ',found)
-  //   if (found) {
-  //     // console.log("ZATEN VAR");
-  //     // console.log('O DA BU: ', item.qty)
-  //     item.qty += 1;
-  //     // console.log('SAYISI: ', cartItems)
-  //   } else {
-  //     setItems([...cartItems, item]);
-  //   }
-  // };
-
-  // const addtocart = () => {
-  //   dispatch({
-  //     type: actionType.SET_CART_ITEMS,
-  //     cartItems: items,
-  //   });
-  //   localStorage.setItem("cartItems", JSON.stringify(items));
-  //   localStorage.setItem("Sepettekiler", JSON.stringify(items));
-  // };
-
-  // useEffect(() => {
-  //   addtocart();
-  //   console.log("SEPET : ", cartItems);
-  // }, [items]);
-
-
-
-  // const ekle = (item) => {
-  //   setItems([...sepet, item]);
-  //   // console.log("Urun : ", item);
-  //   // console.log("SEPET : ", sepet);
-  // };
-
-  // const addtocart = () => {
-  //   dispatch({
-  //     type: actionType.SET_SEPET,
-  //     sepet: items,
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if(items !== []) addtocart();
-  //   // setActivateSepet(false);
-  //   console.log("Urun : ", items);
-  //   console.log("SEPET : ", sepet);
-  // }, [items]);
-
-
-
   return (
     <motion.div
       initial={{ opacity: 0, x: 100 }}

@@ -70,7 +70,7 @@ const ProductsItem = () => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
-    localStorage.setItem("cartItems", JSON.stringify(items));
+    if(items !== []) localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
   useEffect(() => {

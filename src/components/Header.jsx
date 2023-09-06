@@ -47,6 +47,7 @@ const Header = () => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
+    if(items !== []) localStorage.setItem("cartItems", JSON.stringify(items));
   };
   useEffect(() => {
     if(items !== []) addtocart();
