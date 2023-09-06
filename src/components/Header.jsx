@@ -158,8 +158,10 @@ const Header = () => {
                 Menu
               </Link>
             </li>
-            <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer" onClick={() => setIsSearchActive(true)}>
-              {user ? "DOLU" : "BOŞ"}
+            <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+              <Link href={"/about"} className="">
+                About
+              </Link> 
             </li>
           </motion.ul>
 
