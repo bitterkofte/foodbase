@@ -3,7 +3,7 @@
 FoodBase is your order for food-based products. This e-commerce app provides a convenient and user-friendly platform for users to explore, purchase, and review a variety of food-related products. Whether you're a foodie looking for the latest culinary gadgets or a health-conscious shopper in search of nutritious options, FoodBase has something delicious to offer.
 
 ## Preview
-You can check out the website [here](https://foodbase-tr.vercel)!
+You can check out the website [here](https://foodbase-tr.vercel.app/)!
 A screenshot from the website:
 ![screenshot](public/FoodBase-bg-orange.jpg)
 

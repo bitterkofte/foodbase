@@ -60,9 +60,9 @@ const CartContainer = () => {
         </motion.p>
       </div>
 
-      {/* bottom section */}
       {cartItems && cartItems.length > 0 ? (
-        <div className="w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col">
+        <div className="relative w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col overflow-hidden shadow-box-sha-in-top">
+          {/* <div className='absolute top-0 left-0 w-full h-full bg-transparent shadow-box-sha-in-top rounded-t-[2rem] z-[102]'></div> */}
           {/* cart Items section */}
           <div className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none">
             {/* cart Item */}
@@ -79,7 +79,7 @@ const CartContainer = () => {
           </div>
 
           {/* cart total section */}
-          <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2">
+          <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2" >
             <div className="w-full flex items-center justify-between text-gray-700">
               <p className="text-lg">Sub Total</p>
               <p className="text-lg">{tot.toFixed(2)} ₺</p>
