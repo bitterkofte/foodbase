@@ -39,7 +39,7 @@ const about = () => {
             </li>
           </ul>
         </div>
-        <Image src={Man} className="w-4/6 xl:w-2/6 rounded-md object-contain self-center" width={500} alt="man"/>
+        <Image loading="lazy" src={Man} className="w-4/6 xl:w-2/6 rounded-md object-contain self-center" width={500} alt="man"/>
       </div>
 
       <h2 className="font-bold text-2xl mt-8 mb-2">Our Vision</h2>

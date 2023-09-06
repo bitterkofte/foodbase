@@ -235,7 +235,7 @@ const ProductsItem = () => {
             <div className='flex flex-row items-center justify-between lg:flex-col lg:items-start gap-y-3'>
               <h1 className="text-3xl font-bold">{product?.title}</h1>
               <Link href={`#review`} className='flex text-amber-500 text-2xl drop-shadow-md'>
-                {Array(5).fill(0).map((m, i) => (Math.round(product?.stars) >= i+1 ? <MdOutlineStar/> : <MdOutlineStarOutline/>))}
+                {Array(5).fill(0).map((m, i) => (Math.round(product?.stars) >= i+1 ? <MdOutlineStar key={i}/> : <MdOutlineStarOutline key={i}/>))}
               </Link>
             </div>
             <div className="mt-4 py-1 px-2 w-fit text-sm rounded-lg text-neutral-600 bg-neutral-300 select-none">

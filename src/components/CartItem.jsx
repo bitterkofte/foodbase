@@ -53,11 +53,11 @@ const CartItem = ({ item, setFlag, flag }) => {
   }, [qty, items]);
 
   return (
-    <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
+    <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2 drop-shadow-md">
       <Image
         src={item?.imageURL}
-        width={100}
-        height={100}
+        width={50}
+        height={50}
         className="w-20 h-20 max-w-[60px] rounded-full object-contain"
         alt=""
         id="rsm"

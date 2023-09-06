@@ -10,7 +10,33 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import ProductCard from "./ProductCard";
 
 const RowContainer = ({ flag, data }) => {
-  const rowContainer = useRef();
+  // const rowContainer = useRef();
+  const [items, setItems] = useState([]);
+  const [{ cartItems, sepet }, dispatch] = useStateValue();
+
+
+  const increase = (item) => {
+    const found = cartItems.find((i) => i.title === item.title);
+    if (found) {
+      item.qty += 1;
+    } else {
+      setItems([...cartItems, item]);
+    }
+  };
+
+  const addtocart = () => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+  };
+
+  useEffect(() => {
+    if(items !== []) addtocart();
+    // setActivateSepet(false);
+    console.log("Urun : ", items);
+    console.log("CART_ITEMS : ", cartItems);
+  }, [items]);
 
   return (
     <section className='w-full my-0 overflow-auto'>
@@ -21,7 +47,7 @@ const RowContainer = ({ flag, data }) => {
       </div> */}
     <ScrollContainer className="w-full flex items-center gap-3 my-3 pt-10 scroll-smooth overflow-x-scroll scrollbar-none select-none">
       {data && data.length > 0 ? (
-        data.map((item) => <ProductCard key={item.id} item={item} />)
+        data.map((item) => <ProductCard key={item.id} item={item} items={items} setItems={setItems} increase={increase} />)
       ) : (
         <div className="w-full flex flex-col items-center justify-center">
           <Image

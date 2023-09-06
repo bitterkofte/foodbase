@@ -3,6 +3,7 @@ export const actionType = {
   SET_FOOD_ITEMS: "SET_FOOD_ITEMS",
   SET_CART_SHOW: "SET_CART_SHOW",
   SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_SEPET: "SET_SEPET",
 };
 
 const reducer = (state, action) => {
@@ -31,6 +32,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         cartItems: action.cartItems,
+      };
+    
+    case actionType.SET_SEPET:
+      return {
+        ...state,
+        sepet: action.sepet,
       };
 
     default:

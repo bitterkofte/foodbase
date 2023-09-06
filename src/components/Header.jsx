@@ -32,6 +32,28 @@ const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
   const [{ user, foodItems, cartShow, cartItems }, dispatch] = useStateValue();
   const data = foodItems?.filter(f => f.title.toLowerCase().includes(searchValue.toLowerCase()));
+  const [items, setItems] = useState([]);
+
+  const increase = (item) => {
+    const found = cartItems.find((i) => i.title === item.title);
+    if (found) {
+      item.qty += 1;
+    } else {
+      setItems([...cartItems, item]);
+    }
+  };
+  const addtocart = () => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+  };
+  useEffect(() => {
+    if(items !== []) addtocart();
+    // setActivateSepet(false);
+    console.log("Urun : ", items);
+    console.log("CART_ITEMS : ", cartItems);
+  }, [items]);
 
   const loginMobile = async () => {
     if (!user) {
@@ -105,14 +127,15 @@ const Header = () => {
     };
   }, [isSearchActive]);
 
-  useEffect(() => {
-    // console.log("YEREL: ",localStorage.getItem('cartItems'));
-    // console.log("PARSE: ",JSON.parse(localStorage.getItem('cartItems')));
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: JSON.parse(localStorage.getItem('Sepettekiler')),
-    });
-  }, [])
+  // useEffect(() => {
+  //   // console.log("YEREL: ",localStorage.getItem('cartItems'));
+  //   // console.log("PARSE: ",JSON.parse(localStorage.getItem('cartItems')));
+
+  //   dispatch({
+  //     type: actionType.SET_CART_ITEMS,
+  //     cartItems: JSON.parse(localStorage.getItem('Sepettekiler')),
+  //   });
+  // }, [])
   
 
   return (
@@ -325,7 +348,7 @@ const Header = () => {
     {/* <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div> */}
     <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-10 flex flex-wrap justify-center gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
       {data && data.length > 0 ? (
-        data.map((item) => <ProductCard item={item} />)
+        data.map((item) => <ProductCard item={item} items={items} setItems={setItems} increase={increase} />)
       ) : (
         <div className="w-full flex flex-col items-center justify-center">
           <Image

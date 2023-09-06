@@ -82,7 +82,7 @@ const CartContainer = () => {
           <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2">
             <div className="w-full flex items-center justify-between text-gray-700">
               <p className="text-lg">Sub Total</p>
-              <p className="text-lg">{tot} ₺</p>
+              <p className="text-lg">{tot.toFixed(2)} ₺</p>
             </div>
             <div className="w-full flex items-center justify-between text-gray-700">
               <p className="text-lg">Delivery</p>
@@ -94,7 +94,7 @@ const CartContainer = () => {
             <div className="w-full flex items-center justify-between text-neutral-100">
               <p className="text-xl font-semibold">Total</p>
               <p className="text-xl font-semibold">
-                {tot + 2.5} ₺
+                {(tot + 2.5).toFixed(2)} ₺
               </p>
             </div>
 
