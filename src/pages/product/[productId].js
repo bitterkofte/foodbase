@@ -122,8 +122,8 @@ const ProductsItem = () => {
 
   return (
     <>
-    {/* <NextHead/> */}
-    <NextOGHead product={product} />
+    <NextHead/>
+    {/* <NextOGHead product={product} /> */}
     
     <div className="xsm:mt-24 md:mt-40 mb-20">
       {/* ANCHOR Review Modal */}
