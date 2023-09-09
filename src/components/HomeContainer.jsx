@@ -3,8 +3,19 @@ import Image from "next/image";
 import Delivery from "../img/delivery.png";
 import HeroBg from "../img/heroBg.png";
 import { heroData } from "../utils/data";
+import { useStateValue } from "@component/context/StateProvider";
+import { actionType } from "@component/context/reducer";
 
 const HomeContainer = () => {
+  const [{ foodItems, cartShow }, dispatch] = useStateValue();
+
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow: !cartShow,
+    });
+  };
+
   return (
     <section
       className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full "
@@ -42,6 +53,7 @@ const HomeContainer = () => {
         <button
           id="groceries"
           type="button"
+          onClick={showCart}
           className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2  rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"
         >
           Order Now

@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'box-sha-in-hor': '12px 0px 15px -4px rgba(255, 0, 0, 1) inset, -12px 0 15px -4px rgba(58, 58, 58, 0.8) inset',
-        'box-sha-in-top': '0px 5px 15px #3b3b3bdf inset',
+        'box-sha-in-top': '0px 49px 18px -35px #3b3b3bdf inset',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

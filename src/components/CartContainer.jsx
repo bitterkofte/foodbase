@@ -61,10 +61,10 @@ const CartContainer = () => {
       </div>
 
       {cartItems && cartItems.length > 0 ? (
-        <div className="relative w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col overflow-hidden shadow-box-sha-in-top">
+        <div className="relative w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col after:shadow-box-sha-in-top after:content-[''] after:inset-0 after:absolute after:rounded-t-[2rem] after:h-8">
           {/* <div className='absolute top-0 left-0 w-full h-full bg-transparent shadow-box-sha-in-top rounded-t-[2rem] z-[102]'></div> */}
           {/* cart Items section */}
-          <div className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none">
+          <div className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-auto ">
             {/* cart Item */}
             {cartItems &&
               cartItems.length > 0 &&

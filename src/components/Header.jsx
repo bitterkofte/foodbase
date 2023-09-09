@@ -163,9 +163,9 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-8 font-[500]"
           >
-            <li className={`flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 ${isSearchActive ? "bg-inputColor" : ""} duration-100`}>
+            <li className={`flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 ${isSearchActive ? "bg-inputColor border-orange-500" : ""} transition-all duration-300`}>
               <input className="text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
-              {isSearchActive ? <MdClose className="hover:text-red-600 transition-all cursor-pointer" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-400 transition-all cursor-pointer" onClick={() => setIsSearchActive(true)}/>}
+              {isSearchActive ? <MdClose className="hover:text-red-600 hover:scale-125 transition-all cursor-pointer" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-600 hover:scale-125 transition-all cursor-pointer" onClick={() => setIsSearchActive(true)}/>}
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/"} className="">
@@ -345,9 +345,8 @@ const Header = () => {
 
     {/* SECTION Filtered Products */}
     {isSearchActive &&
-    <>
-    {/* <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div> */}
-    <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-10 flex flex-wrap justify-center gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
+    // <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div>
+    <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-24 flex flex-wrap justify-start  gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
       {data && data.length > 0 ? (
         data.map((item) => <ProductCard item={item} items={items} setItems={setItems} increase={increase} />)
       ) : (
@@ -366,7 +365,7 @@ const Header = () => {
         </div>
       )}
     </div>
-    </>
+
     }
     </div>
   );

@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdShoppingBasket, MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useStateValue } from "@component/context/StateProvider";
 import { actionType } from "@component/context/reducer";
+import Link from "next/link";
 
 const ProductCard = ({item, items, increase, setItems}) => {
   return (
@@ -21,15 +22,17 @@ const ProductCard = ({item, items, increase, setItems}) => {
           className="w-40 h-40 -mt-10 drop-shadow-md hover:drop-shadow-xl"
           whileHover={{ scale: 1.2 }}
         >
+          <Link href={`product/${item.id}`}>
           <Image
             src={item?.imageURL}
             alt="image"
             className="w-full h-full object-contain cursor-pointer"
             width={700}
             height={700}
-            onClick={() => router.push(`product/${item.id}`)}
+            // onClick={() => router.push(`product/${item.id}`)}
             id="rsm"
           />
+          </Link>
         </motion.div>
         <motion.div
           whileTap={{ scale: 0.75 }}
@@ -41,12 +44,13 @@ const ProductCard = ({item, items, increase, setItems}) => {
       </div>
 
       <div className="w-full flex flex-col items-end justify-end -mt-8">
-        <p
+        <Link
           className="text-textColor font-semibold text-base md:text-lg cursor-pointer"
-          onClick={() => router.push(`product/${item.id}`)}
+          // onClick={() => router.push(`product/${item.id}`)}
+          href={`product/${item.id}`}
         >
           {item?.title}
-        </p>
+        </Link>
         <p className="flex text-amber-500 drop-shadow-md">
           {Array(5).fill(0).map((m, i) => (Math.round(item?.stars) >= i+1 ? <MdOutlineStar key={i}/> : <MdOutlineStarOutline key={i}/>))}
         </p>
