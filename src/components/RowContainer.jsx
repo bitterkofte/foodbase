@@ -35,8 +35,8 @@ const RowContainer = ({ flag, data }) => {
   useEffect(() => {
     if(items !== []) addtocart();
     // setActivateSepet(false);
-    console.log("Urun : ", items);
-    console.log("CART_ITEMS : ", cartItems);
+    // console.log("Urun : ", items);
+    // console.log("CART_ITEMS : ", cartItems);
   }, [items]);
 
   return (

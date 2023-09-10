@@ -6,7 +6,7 @@ import Groceries from "../../public/groceries.jpg"
 
 const about = () => {
   return (
-    <div className="w-4/6 mt-32 mx-auto mb-20">
+    <div className="w-5/6 lg:w-4/6 mt-32 mx-auto mb-20">
       <h1 className="font-bold text-4xl">About Us</h1>
       <div className='flex mt-5 gap-5 flex-col xl:flex-row'>
         <Image src={Delivery} className="w-5/6 rounded-md object-contain self-center" width={500} alt="delivery"/>
@@ -43,25 +43,25 @@ const about = () => {
       </div>
 
       <h2 className="font-bold text-2xl mt-8 mb-2">Our Vision</h2>
-      <div className='flex gap-5 flex-col xl:flex-row'>
-        <Image src={Groceries} className="w-4/6 rounded-md object-contain self-center" width={300} alt="Groceries"/>
-        <div className=''>
+      <div className='sm:flex sm:gap-5 sm:flex-col xl:block'>
+        <Image src={Groceries} className="w-4/6 xl:w-3/6 rounded-md object-contain mx-auto mb-3 xl:float-left xl:mr-4" width={300} alt="Groceries"/>
+        {/* <div className=''> */}
           <p className="mb-3 text-justify">Our vision at FoodBase is to become the go-to destination for food lovers, a platform where culinary exploration meets unparalleled convenience. We envision:</p>
-          <ul className="flex flex-col gap-y-2 text-justify">
-            <li>
+          {/* <p className="flex flex-col gap-y-2 text-justify"> */}
+            <p className="mb-3 text-justify">
               <strong>Global Accessibility</strong>: We aspire to connect people with diverse culinary experiences from around the world, breaking down geographic barriers and fostering a sense of global community through food.
-            </li>
-            <li>
+            </p>
+            <p className="mb-3 text-justify">
             <strong>Sustainability</strong>: We are committed to environmental responsibility. We aim to work with restaurants that share our values and promote sustainable practices, minimizing our carbon footprint while delighting your palate.
-            </li>
-            <li>
+            </p>
+            <p className="mb-3 text-justify">
             <strong>Innovation</strong>: We continually strive to innovate and enhance our services, utilizing cutting-edge technology to make food delivery smarter, faster, and more personalized than ever before.
-            </li>
-            <li>
+            </p>
+            <p className="mb-3 text-justify">
             <strong>Customer-Centricity</strong>: Our customers are at the heart of everything we do. We aim to create memorable, positive experiences at every touchpoint, from browsing the menu to savoring the last bite.
-            </li>
-          </ul>
-        </div>
+            </p>
+          {/* </p> */}
+        {/* </div> */}
       </div>
 
       <p className="mt-10 mb-5 text-justify">

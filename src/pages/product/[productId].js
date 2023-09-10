@@ -55,13 +55,13 @@ const ProductsItem = () => {
     const found = cartItems.find(inquery);
     // console.log('BULDUM : ',found)
     if (found) {
-      console.log("ZATEN VAR");
+      // console.log("ZATEN VAR");
       // console.log('O DA BU: ', item.qty)
       product.qty += 1;
       // console.log('SAYISI: ', cartItems)
     } else {
       setItems([...cartItems, product]);
-      console.log("SEPET : ", cartItems);
+      // console.log("SEPET : ", cartItems);
     }
   };
 
@@ -86,7 +86,7 @@ const ProductsItem = () => {
 
   const makeAReview = () => {
     if(!user){
-      console.log("GİRİŞ YAP")
+      // console.log("GİRİŞ YAP")
       setWModal(true);
     }
     else setReviewModal(true);

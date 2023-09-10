@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -33,6 +33,7 @@ const Header = () => {
   const [{ user, foodItems, cartShow, cartItems }, dispatch] = useStateValue();
   const data = foodItems?.filter(f => f.title.toLowerCase().includes(searchValue.toLowerCase()));
   const [items, setItems] = useState([]);
+  const searchRef = useRef();
 
   const increase = (item) => {
     const found = cartItems.find((i) => i.title === item.title);
@@ -52,8 +53,8 @@ const Header = () => {
   useEffect(() => {
     if(items !== []) addtocart();
     // setActivateSepet(false);
-    console.log("Urun : ", items);
-    console.log("CART_ITEMS : ", cartItems);
+    // console.log("Urun : ", items);
+    // console.log("CART_ITEMS : ", cartItems);
   }, [items]);
 
   const loginMobile = async () => {
@@ -78,7 +79,7 @@ const Header = () => {
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           const kullanici = result.user;
-          console.log('Kullanici Bilgileri: ', kullanici);
+          // console.log('Kullanici Bilgileri: ', kullanici);
           dispatch({
             type: actionType.SET_USER,
             user: kullanici.providerData[0],
@@ -111,6 +112,7 @@ const Header = () => {
   const closeSearching = () => {
     setSearchValue("");
     setIsSearchActive(false);
+    searchRef.current.blur();
   }
 
   useEffect(() => {
@@ -141,9 +143,9 @@ const Header = () => {
 
   return (
     <div className=''>
-    <header className={`${isSearchActive ? "bg-headerColor" : ""} fixed top-0 z-50 w-screen p-3 px-4 md:p-6 md:px-16 backdrop-blur-lg shadow-lg`}>
+    <header className={`${isSearchActive ? "bg-headerColor" : ""} fixed top-0 z-50 w-screen p-3 px-4 lg:p-6 md:px-16 backdrop-blur-lg shadow-lg`}>
       {/* SECTION desktop */}
-      <div className="hidden md:flex w-full items-center justify-between">
+      <div className="hidden lg:flex w-full items-center justify-between">
         <Link href={"/"} className="flex items-center gap-2">
           <Image
             src={FB}
@@ -164,7 +166,7 @@ const Header = () => {
             className="flex items-center gap-8 font-[500]"
           >
             <li className={`flex items-center px-2 text-base text-headingColor border-2 rounded-full border-neutral-500 ${isSearchActive ? "bg-inputColor border-orange-500" : ""} transition-all duration-300`}>
-              <input className="text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} />
+              <input ref={searchRef} className="text-sm py-1 px-2 bg-transparent border-none outline-none" type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} onClick={() => setIsSearchActive(true)} onKeyDown={(e) => e.key === "Escape" && closeSearching() } />
               {isSearchActive ? <MdClose className="hover:text-red-600 hover:scale-125 transition-all cursor-pointer" onClick={closeSearching} /> : <MdSearch className="hover:text-orange-600 hover:scale-125 transition-all cursor-pointer" onClick={() => setIsSearchActive(true)}/>}
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
@@ -248,7 +250,7 @@ const Header = () => {
       </div>
 
       {/* SECTION mobile */}
-      <div className="flex items-center justify-between md:hidden w-full">
+      <div className="flex items-center justify-between lg:hidden w-full">
         {!isSearchActive ? 
         <Link href={"/"} className="flex items-center gap-2">
           <Image src={FB} alt="logo" className="w-8 object-cover" id="rsm" />
@@ -346,9 +348,9 @@ const Header = () => {
     {/* SECTION Filtered Products */}
     {isSearchActive &&
     // <div className='fixed top-0 left-0 z-[3] bg-modalColor'></div>
-    <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-24 flex flex-wrap justify-start  gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
+    <div className='fixed top-0 left-0 w-full h-full z-[4] py-20 sm:py-24 md:py-28 lg:py-32 px-24 flex flex-wrap  justify-start gap-4 overflow-y-scroll bg-modalColor backdrop-blur-sm'>
       {data && data.length > 0 ? (
-        data.map((item) => <ProductCard item={item} items={items} setItems={setItems} increase={increase} />)
+        data.map((item) => <ProductCard key={item.key} item={item} items={items} setItems={setItems} increase={increase} />)
       ) : (
         <div className="w-full flex flex-col items-center justify-center">
           <Image
