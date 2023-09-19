@@ -26,7 +26,7 @@ const ReviewCard = ({reviewInfo}) => {
         </div>
         <p className="text-xs text-gray-500 italic">{rDate}</p>
         <h3 className="tracking-wider font-semibold text-lg">{reviewInfo.title}</h3>
-        <p>{reviewInfo.description}</p>
+        <p className="text-justify">{reviewInfo.description}</p>
       </div>
     </motion.div>
   );

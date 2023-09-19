@@ -176,12 +176,12 @@ const Header = () => {
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/#groceries"} className="">
-                Groceries
+                Prominent
               </Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               <Link href={"/#menu"} className="">
-                Menu
+                Categories
               </Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
@@ -301,7 +301,7 @@ const Header = () => {
                 initial={{ opacity: 0.5, scale: 0.2 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.2 }}
-                className="w-40 bg-primary shadow-md rounded-lg flex  flex-col absolute top-12 right-0 overflow-hidden"
+                className="w-40 bg-primary shadow-md rounded-lg flex flex-col absolute top-12 right-0 overflow-hidden"
               >
                 {user && user.email === "bitterkofte@gmail.com" && (
                   <Link href="/newitem" onClick={() => setIsMenu(false)}>
@@ -311,25 +311,27 @@ const Header = () => {
                     </p>
                   </Link>
                 )}
-                <ul className="flex items-center flex-col">
+                <ul className="flex items-stretch flex-col text-center p-2">
                   <Link href={"/"} >
-                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                    <li className="hover:bg-orange-300 hover:rounded-md hover:shadow-md px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out">
                       Home
                     </li>
                   </Link>
+                  <Link href={"/#groceries"} className="w-full">
+                    <li className="hover:bg-orange-300 hover:rounded-md hover:shadow-md px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out">
+                      Prominent
+                    </li>
+                  </Link>
                   <Link href={"/#menu"} >
-                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-                      Menu
+                    <li className="hover:bg-orange-300 hover:rounded-md hover:shadow-md px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out">
+                      Categories
                     </li>
                     </Link>
-                  <Link href={"/#about"} >
-                    <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+                  <Link href={"/about"} >
+                    <li className="hover:bg-orange-300 hover:rounded-md hover:shadow-md px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out">
                       About Us
                     </li>
                   </Link>
-                  <li className="px-4 py-2 text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-                    {user ? "DOLU" : "BOŞ"}
-                  </li>
                 </ul>
                 <p
                   className="m-2 p-2 bg-red-400 rounded-md shadow-md flex items-center justify-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base"

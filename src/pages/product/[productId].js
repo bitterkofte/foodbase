@@ -208,7 +208,8 @@ const ProductsItem = () => {
             />
             <button
               onClick={uploadReview}
-              className={`py-2 px-3 bg-slate-500 text-neutral-200 rounded-md transition-all ${(rMStarError || rMTitleError || rMDescError) ? 'hover:bg-red-500' : 'hover:bg-amber-500'}`}
+              disabled={(rMStarError || rMTitleError || rMDescError)}
+              className={`py-2 px-3 bg-slate-500 text-neutral-200 rounded-md transition-all ${(rMStarError || rMTitleError || rMDescError) ? 'hover:bg-red-500 cursor-not-allowed' : 'hover:bg-amber-500'}`}
             >
               Send
             </button>
@@ -223,7 +224,7 @@ const ProductsItem = () => {
         <Image
           src={product?.imageURL}
           alt="image"
-          className="w-[400px] h-[400px] py-6 sm:self-center bg-neutral-300 rounded-2xl object-contain"
+          className="w-[400px] h-[400px] p-6 sm:self-center bg-neutral-300 rounded-2xl object-contain"
           width={700}
           height={700}
           id="rsm"
@@ -289,13 +290,3 @@ const ProductsItem = () => {
 };
 
 export default ProductsItem;
-
-// export const getServerSideProps = async () => {
-//   const [{ foodItems }, dispatch] = await useStateValue();
-//   await getAllFoodItems().then((data) => {
-//     dispatch({
-//       type: actionType.SET_FOOD_ITEMS,
-//       foodItems: data,
-//     });
-//   });
-// }

@@ -7,20 +7,25 @@ import Groceries from "../../public/groceries.jpg"
 const about = () => {
   return (
     <div className="w-5/6 lg:w-4/6 mt-32 mx-auto mb-20">
-      <h1 className="font-bold text-4xl">About Us</h1>
-      <div className='flex mt-5 gap-5 flex-col xl:flex-row'>
-        <Image src={Delivery} className="w-5/6 rounded-md object-contain self-center" width={500} alt="delivery"/>
-        <div className="text-base text-justify">
-          <p className="mb-5">
-            Welcome to FoodBase, where we believe that great food should be accessible to everyone, anytime, and anywhere. Our journey began with a simple idea: to create a platform that connects people with their favorite meals and foods from the best local restaurants and markets, all delivered to their doorstep with convenience, speed, and a touch of culinary delight.
-          </p>
-          <p>
-          Placing the customer at the forefront of every decision and action, ensuring their satisfaction, safety, and convenience are paramount. Commitment to delivering high-quality food, service, and overall experience, consistently striving for excellence in all aspects of the business. 
-          </p>
+      <section className="flow-root">
+        <h1 className="font-bold text-4xl mb-4">About Us</h1>
+        {/* <div className='flex mt-5 gap-5 flex-col xl:flex-row'> */}
+        <div className='sm:flex sm:gap-5 sm:flex-col xl:block'>
+          {/* <Image src={Delivery} className="w-5/6 rounded-md object-contain self-center" width={500} alt="delivery"/> */}
+          <Image src={Delivery} className="w-4/6 xl:w-4/6 rounded-md object-contain mx-auto mb-3 xl:float-left xl:mr-4" width={500} alt="delivery"/>
+          <div className="text-base text-justify">
+            <p className="mb-5">
+              Welcome to FoodBase, where we believe that great food should be accessible to everyone, anytime, and anywhere. Our journey began with a simple idea: to create a platform that connects people with their favorite meals and foods from the best local restaurants and markets, all delivered to their doorstep with convenience, speed, and a touch of culinary delight.
+            </p>
+            <p>
+            Placing the customer at the forefront of every decision and action, ensuring their satisfaction, safety, and convenience are paramount. Commitment to delivering high-quality food, service, and overall experience, consistently striving for excellence in all aspects of the business. 
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <h2 className="font-bold text-2xl mt-8 mb-2">Our Mission</h2>
+      <section className='clear-both mt-12'>
+      <h2 className="font-bold text-2xl mb-2 ">Our Mission</h2>
       <div className='flex mt-5 gap-5 flex-col xl:flex-row items'>
         <div className=''>
           <p className="mb-3 text-justify">At FoodBase, our mission is to revolutionize the way people experience food by making it easier, more convenient, and more enjoyable. We are committed to:</p>
@@ -41,8 +46,9 @@ const about = () => {
         </div>
         <Image loading="lazy" src={Man} className="w-4/6 xl:w-2/6 rounded-md object-contain self-center" width={500} alt="man"/>
       </div>
+      </section>
 
-      <h2 className="font-bold text-2xl mt-8 mb-2">Our Vision</h2>
+      <h2 className="font-bold text-2xl mt-12 mb-2">Our Vision</h2>
       <div className='sm:flex sm:gap-5 sm:flex-col xl:block'>
         <Image src={Groceries} className="w-4/6 xl:w-3/6 rounded-md object-contain mx-auto mb-3 xl:float-left xl:mr-4" width={300} alt="Groceries"/>
         {/* <div className=''> */}

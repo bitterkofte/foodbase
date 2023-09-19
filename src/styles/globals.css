@@ -26,6 +26,11 @@ body {
     rgb(var(--background-start-rgb));
 } */
 
+/* @layer base {
+  body {
+    @apply scroll-pt-20;
+  }
+} */
 
 * {
   margin: 0;
@@ -33,14 +38,16 @@ body {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 100px;
+}
+
 body {
   /* font-family: 'Comfortaa'; */
   background-color: #f5f3f3;
-  scroll-behavior: smooth !important;
-}
-
-html, body {
-  scroll-behavior: smooth !important;
+  /* scroll-behavior: smooth !important; */
+  
 }
 
 .no-scbar::-webkit-scrollbar{

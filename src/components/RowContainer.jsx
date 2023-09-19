@@ -46,7 +46,7 @@ const RowContainer = ({ flag, data }) => {
             Our Fresh & healthy foods
           </p>
       </div> */}
-    <ScrollContainer className="w-full flex items-center gap-3 my-3 pt-10 scroll-smooth overflow-x-scroll scrollbar-none select-none">
+    <ScrollContainer className="w-full flex items-center gap-3 my-3 pt-10 pb-3 scroll-smooth overflow-x-scroll scrollbar-none select-none">
       {data && data.length > 0 ? (
         data.map((item) => <ProductCard key={item.id} item={item} items={items} setItems={setItems} increase={increase} />)
       ) : (
